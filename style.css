@@ -5,8 +5,8 @@ body {
     font-family: 'Times New Roman', Times, serif;
 }
 #all-contents {
-  max-width: 10000000px;
-    margin: -10px;
+  max-width: 800px;
+    margin: auto;
 }
 
 /* navigation menu */
@@ -80,7 +80,7 @@ h2, h3 {
 }
 
 #portfolio li:hover {
-    background: #eee;
+    background: #080cec;
 }
 
 #portfolio a {
