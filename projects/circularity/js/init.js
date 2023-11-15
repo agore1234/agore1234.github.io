@@ -46,7 +46,7 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            physikz.addRandomVelocity
+            
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
         
