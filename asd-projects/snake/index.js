@@ -85,13 +85,13 @@ function checkForNewDirection(event) {
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
   }
-  if (activeKey === KEY.RIGHT) {
+  else if (activeKey === KEY.RIGHT) {
     snake.head.direction = "right";
   }
-  if (activeKey === KEY.UP) {
+  else if (activeKey === KEY.UP) {
     snake.head.direction = "up";
   }
-  if (activeKey === KEY.DOWN) {
+  else if (activeKey === KEY.DOWN) {
     snake.head.direction = "down";
   }
 
@@ -110,9 +110,9 @@ function moveSnake() {
   column/row properties. 
   
   */
-  for (i = 1; i > snake.body; i++) {
+  for (var i = snake.body.length-1; i >= 1; i--) {
     var snakeSquare = snake.body[i];
-    var nextSnakeSquare = snakeSquare + 1;
+    var nextSnakeSquare = snake.body[i-1];
     var nextRow = nextSnakeSquare.row;
     var nextColumn = nextSnakeSquare.column;
     var nextDirection = nextSnakeSquare.direction;
@@ -120,7 +120,7 @@ function moveSnake() {
     snakeSquare.row = nextRow;
     snakeSquare.column = nextColumn;
     repositionSquare(snakeSquare);
-}
+  }
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
 
@@ -235,8 +235,13 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-
+  for (let i = 1; i < snake.body.length; i++) {
+    if (snake.head.row === snake.body[i].row && snake.head.column === snake.body[i].column) {
+      return true;
+  }
+}
   return false;
+  
 }
 
 function endGame() {
@@ -332,12 +337,13 @@ function getRandomAvailablePosition() {
     randomPosition.column = Math.floor(Math.random() * COLUMNS);
     randomPosition.row = Math.floor(Math.random() * ROWS);
     spaceIsAvailable = true;
-
+   
     /*
     TODO 13: After generating the random position determine if that position is
     not occupied by a snakeSquare in the snake's body. If it is then set 
     spaceIsAvailable to false so that a new position is generated.
     */
+  
   }
 
   return randomPosition;
